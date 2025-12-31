@@ -1,0 +1,135 @@
+LOAD DATA
+
+---
+
+Completa la siguiente clase:
+(Haz todas las comprobaciones de datos con assert)
+
+import polars as pl
+import torch
+from torch import Tensor
+
+from src.data.join import (
+    add_indicators_to_sp500_returns_weekly,
+    compute_sp500_returns_weekly,
+    to_sp500_stocks_weekly,
+    transpose_sector,
+)
+from src.data.read import (
+    drop_null_columns,
+    read_sp500_stocks_daily,
+    read_us_indicators_weekly,
+)
+
+type DataLoader = torch.utils.data.DataLoader[Tensor]
+
+
+def load_raw_dataset() -> pl.DataFrame:
+
+    us_indicators_weekly: pl.DataFrame = read_us_indicators_weekly()
+    us_indicators_weekly: pl.DataFrame = drop_null_columns(df=us_indicators_weekly)
+    sp500_stocks_daily: pl.DataFrame = read_sp500_stocks_daily()
+
+    sp500_stocks_weekly: pl.DataFrame = to_sp500_stocks_weekly(
+        sp500_stocks_daily=sp500_stocks_daily
+    )
+
+    sp500_returns_weekly: pl.DataFrame = compute_sp500_returns_weekly(
+        sp500_stocks_weekly=sp500_stocks_weekly
+    )
+
+    sp500_returns_weekly = transpose_sector(
+        sp500_returns_weekly_long=sp500_returns_weekly
+    )
+
+    sp500_returns_with_indicators_weekly: pl.DataFrame = (
+        add_indicators_to_sp500_returns_weekly(
+            sp500_returns_weekly=sp500_returns_weekly,
+            us_indicators_weekly=us_indicators_weekly,
+        )
+    )
+
+    return sp500_returns_with_indicators_weekly
+
+
+class DataModule:
+    def __init__(
+        self,
+        dataframe: pl.DataFrame,
+        fields: list[str],
+        normalize: bool = True,
+        frequency_regular: bool = True,
+    ) -> None:
+
+        self._fields: list[str] = fields
+        self._freqency: int | None = self._check_dataframe(
+            dataframe=dataframe, fields=fields, frequency_regular=frequency_regular
+        )
+
+        processed_dataframe: tuple[pl.Series, Tensor, Tensor, Tensor]
+        processed_dataframe = self._process_dataframe(
+            dataframe=dataframe, fields=fields
+        )
+        self._dates: pl.Series = processed_dataframe[0]
+        self._data: Tensor = processed_dataframe[1]
+        self._mean: Tensor = processed_dataframe[2]
+        self._variance: Tensor = processed_dataframe[3]
+
+    def _check_dataframe(
+        self, dataframe: pl.DataFrame, fields: list[str], frequency_regular: bool = True
+    ) -> int | None:
+
+        assert isinstance(dataframe, pl.DataFrame)
+        assert isinstance(fields, list)
+        assert all(isinstance(f, str) for f in fields)
+
+        # 0. comprobar que "date" no está en fields (case insensitive)
+        # 1. comprobar que todos los fields están en df (case insensitive)
+        # 2. comprobar que df tiene un campo llamado "date" (case insensitive)
+        # 3. comprobar que no hay valores nulos en el dataframe
+        # 4. comprobar que la frecuencia entre todas las fechas es la misma (si regular_frequency=True)
+
+        # devolver la frecuencia (en días) (si regular_frequency = False devolver None)
+
+    def _process_dataframe(
+        self, dataframe: pl.DataFrame, fields: list[str]
+    ) -> tuple[pl.Series, Tensor, Tensor, Tensor]:
+
+        # devolver:
+        # 1. una serie con las fechas
+        # 2. un torch tensor de datos con ndim==2 (batch, #fiels) (con los datos normalizados)
+        # 3. un torch tensor de medias con ndim==1 (#fields,)
+        # 4. un torch tensor de varianzas con ndim==1 (#fields,)
+
+        pass
+
+    @property
+    def fields(self) -> list[str]:
+        return self._fields
+
+    @property
+    def dates(self) -> pl.DataFrame:
+        return self._dates
+
+    def spit_dates(self, split_proportion: float) -> tuple[pl.DataFrame, pl.DataFrame]:
+        pass
+
+    def generate_torch_dataloaders(
+        self,
+        batch: int,
+        drop_last: bool = True,
+    ) -> tuple[DataLoader, DataLoader]:
+        pass
+
+        # devolver 2 dataloaders uno de train y uno de test
+
+    def unnormalize_series(self, prediction: Tensor) -> Tensor:
+
+        assert prediction.ndim in (1, 2)
+        if prediction.ndim == 1:
+            assert prediction.shape[0] == len(self._fields)
+        if prediction.ndim == 2:
+            assert prediction.shape[1] == len(self._fields)
+
+        # utilizar las medias y varianzas guardadas para desnormalizar el tensor de prediction
+        # el tensor resultante debe tener la misma forma que el tensor de prediction

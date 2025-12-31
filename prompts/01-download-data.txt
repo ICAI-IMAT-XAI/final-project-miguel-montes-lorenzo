@@ -1,0 +1,49 @@
+DOWNLOAD DATA:
+
+---
+
+Crea una función para descargar estos documentos de kaggle y colocarlos dentro de la carpeta "data" (créala si no existe):
+
+https://www.kaggle.com/datasets/andrewmvd/sp-500-stocks?select=sp500_stocks.csv
+
+sp500_companies.csv
+sp500_index.csv
+sp500_stocks.csv
+
+---
+
+Crea una función equivalente para este otro dataset
+
+URL: <https://www.kaggle.com/datasets/mikoajfish99/us-recession-and-financial-indicators>
+
+**Files**:
+
+* **10-Year Real Interest Rate.csv**
+* **Bank Credit All Commercial Banks.csv**
+* **Commercial Real Estate Prices for United States.csv**
+* **Consumer Loans Credit Cards and Other Revolving Plans All Commercial Banks.csv**
+* **Consumer Price Index Total All Items for the United States.csv**
+* **Consumer Price Index for All Urban Consumers All Items in U.S. City Average.csv**
+* **Continued Claims (Insured Unemployment).csv**
+* **Delinquency Rate on Credit Card Loans All Commercial Banks.csv**
+* **Federal Funds Effective Rate.csv**
+* **Gross Domestic Product.csv**
+* **Households Owners Equity in Real Estate Level.csv**
+* **Inflation consumer prices for the United States.csv**
+* **M1.csv**
+* **M2.csv**
+* **Median Consumer Price Index.csv**
+* **NASDAQ.csv**
+* **Personal Saving Rate.csv**
+* **Real Estate Loans Commercial Real Estate Loans All Commercial Banks.csv**
+* **Real Estate Loans Residential Real Estate Loans Revolving Home Equity Loans All Commercial Banks.csv**
+* **Real Gross Domestic Product.csv**
+* **SPX500.csv**
+* **Sticky Price Consumer Price Index less Food and Energy.csv**
+* **Sticky Price Consumer Price Index.csv**
+* **Total Unemployed Plus All Persons Marginally Attached to the Labor Force Plus Total Employed Part Time for Economic Reasons.csv**
+* **Unemployment Level.csv**
+* **Unemployment Rate.csv**
+
+
+except that all field different from SPX500 and NASDAQ will be included into the same subdirectory called "indicators"

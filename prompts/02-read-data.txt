@@ -1,0 +1,32 @@
+LOAD DATA:
+
+---
+
+Crea una función para hacer lo siguiente:
+
+Load all indicators from `./data/indicators/indicators/*`, grouped into a single `polars.DataFrame`: `us_indicators_weekly`
+
+(Asegúrate de usar el pathlib para obtener la ruta absoluta de la raíz del proyecto: directorio previo más cercano con un directorio /src)
+
+Para que te hagas una idea, todos los ficheros dentro de project-root/data/indicators/indicators son csvs con 2 campos, uno que se llama DATE, y otro con un nombre cambiante que contiene el valor de interés. Este segundo nombre es el que le pondrás en el dataset conjunto.
+El campo de "DATE" renómbralo a "Date"
+
+Entre los ficheros de project-root/data/indicators/indicators los hay con distintas frecuencias. El dataframe resultante debe tener frecuencia weekly. Para aquellos ficheros que tengan una frecuencia distinta de weekly rellena los registros de frecuencia weekly copiando el último valor previo no nulo y distinto de 0. Si no hay valor previo no nulo pon un 0.
+Cuando encuentres un 0 trátalo como un null (en este dataset la mayoría de valores no tienen sentido como 0)
+
+
+---
+
+Crea una función para hacer lo siguiente:
+
+Load the file `./data/sp500stocks/sp500_stocks.csv` into a `polars.DataFrame`, adding the company sector (which can be inferred from the file `./data/sp500_companies.csv`): `sp500_stocks_daily`.
+
+(Asegúrate de usar el pathlib para obtener la ruta absoluta de la raíz del proyecto: directorio previo más cercano con un directorio /src)
+
+Para que te hagas una idea:
+
+Estos son los campos de ./data/sp500_stocks/sp500_companies.csv:
+Exchange, Symbol, Shortname, Longname, Sector, Industry, Currentprice, Marketcap, Ebitda, Revenuegrowth
+
+Estos son los campos de ./data/sp500_stocks/sp500_stocks.csv:
+Date, Symbol, Adj Close, Close, High, Low, Open, Volume

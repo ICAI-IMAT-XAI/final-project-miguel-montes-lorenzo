@@ -118,15 +118,42 @@ Key Economic Indicators (2005-2025) (monthly)
 
 ## Data processing
 
-1. Load all indicators from `./data/indicators/*`, grouped into a single `polars.DataFrame`: `us_indicators_weekly`.
+**1.** Load all indicators from `./data/indicators/indicators/*`, grouped into a single `polars.DataFrame`: `us_indicators_weekly`.
 
-2. Load the file `./data/sp500_stocks.csv` into a `polars.DataFrame`, adding the company sector (which can be inferred from the file `sp500_companies.csv`): `sp500_stocks_daily`.
+**2.** Load the file `./data/sp500stocks/sp500_stocks.csv` into a `polars.DataFrame`, adding the company sector (which can be inferred from the file `sp500_companies.csv`): `sp500_stocks_daily`.
 
-3. Transform the `sp500_stocks_daily` DataFrame into an equivalent one with weekly frequency: `sp500_stocks_weekly`.
+**3.** Transform the `sp500_stocks_daily` DataFrame into an equivalent one with weekly frequency: `sp500_stocks_weekly`.
 
-4. Transform the `sp500_stocks_weekly` DataFrame by replacing closing prices with returns aggregated by sector (also including the overall index return): `sp500_returns_weekly`.
+**4.** Transform the `sp500_stocks_weekly` DataFrame by replacing closing prices with returns aggregated by sector (also including the overall index return): `sp500_returns_weekly`.  
 
-5. Modify the `sp500_returns_weekly` DataFrame by adding the indicators from `us_indicators_weekly`: `sp500_returns_with_indicators_weekly`.
+  **Work with **returns**, not prices**
+
+  First, transform each stock:
+
+  $$
+  r_{i,t} = \log\left(\frac{P_{i,t}}{P_{i,t-1}}\right)
+  $$
+
+  Advantages:
+
+* Returns are **dimensionless**
+* They are comparable across stocks
+* They are the standard in finance
+
+  **Aggregation by sector**
+
+  For each sector $s$ and day $t$:
+
+  $$
+  R_{s,t} = \frac{1}{N_{s,t}} \sum_{i \in s,\ \text{exists at } t} r_{i,t}
+  $$
+
+  Important key points:
+
+* $N_{s,t}$ = number of stocks **existing on that day**
+* You **do not force a fixed number of companies**
+
+**5.** Modify the `sp500_returns_weekly` DataFrame by adding the indicators from `us_indicators_weekly`: `sp500_returns_with_indicators_weekly`.
 
 ## Model organization
 
