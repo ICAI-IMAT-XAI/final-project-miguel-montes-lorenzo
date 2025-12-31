@@ -126,29 +126,27 @@ Key Economic Indicators (2005-2025) (monthly)
 
 **4.** Transform the `sp500_stocks_weekly` DataFrame by replacing closing prices with returns aggregated by sector (also including the overall index return): `sp500_returns_weekly`.  
 
-  **Work with **returns**, not prices**
+**Work with **returns**, not prices**
 
-  First, transform each stock:
+First, transform each stock:
 
-  $$
-  r_{i,t} = \log\left(\frac{P_{i,t}}{P_{i,t-1}}\right)
-  $$
+$$
+r_{i,t} = \log\left(\frac{P_{i,t}}{P_{i,t-1}}\right)
+$$  
 
-  Advantages:
+Advantages:
 
 * Returns are **dimensionless**
 * They are comparable across stocks
-* They are the standard in finance
+* They are the standard in finance  
 
-  **Aggregation by sector**
+**Aggregation by sector**
 
-  For each sector $s$ and day $t$:
+For each sector $s$ and day $t$:
 
-  $$
-  R_{s,t} = \frac{1}{N_{s,t}} \sum_{i \in s,\ \text{exists at } t} r_{i,t}
-  $$
+$$R_{s,t} = \frac{1}{N_{s,t}} \sum_{i \in s,\ \text{exists at } t} r_{i,t}$$
 
-  Important key points:
+Important key points:
 
 * $N_{s,t}$ = number of stocks **existing on that day**
 * You **do not force a fixed number of companies**
