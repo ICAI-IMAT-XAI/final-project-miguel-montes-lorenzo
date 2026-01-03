@@ -3,7 +3,26 @@ from pathlib import Path
 
 import polars as pl
 
-from src.data.utils import drop_null_columns, find_project_root
+
+def _find_project_root(start_path: Path) -> Path:
+    """Find the nearest parent directory containing a `src` folder.
+
+    Args:
+        start_path: Path from which to start searching upwards.
+
+    Returns:
+        Absolute path to the project root directory.
+
+    Raises:
+        RuntimeError: If no directory containing `src` is found.
+    """
+    current: Path = start_path.resolve()
+
+    for parent in [current, *current.parents]:
+        if (parent / "src").is_dir():
+            return parent
+
+    raise RuntimeError("Project root not found (no 'src' directory detected).")
 
 
 def read_us_indicators_weekly() -> pl.DataFrame:
@@ -27,7 +46,7 @@ def read_us_indicators_weekly() -> pl.DataFrame:
         Polars DataFrame with a `Date` column plus one column per indicator, at
         weekly frequency (Monday).
     """
-    project_root: Path = find_project_root(start_path=Path(__file__).parent)
+    project_root: Path = _find_project_root(start_path=Path(__file__).parent)
     indicators_dir: Path = project_root / "data" / "indicators" / "indicators"
 
     if not indicators_dir.is_dir():
@@ -146,7 +165,7 @@ def read_sp500_stocks_daily() -> pl.DataFrame:
     Returns:
         A Polars DataFrame containing daily stock prices with sector information.
     """
-    project_root: Path = find_project_root(start_path=Path(__file__).parent)
+    project_root: Path = _find_project_root(start_path=Path(__file__).parent)
 
     stocks_path: Path = project_root / "data" / "sp500stocks" / "sp500_stocks.csv"
     companies_path: Path = project_root / "data" / "sp500stocks" / "sp500_companies.csv"
@@ -200,7 +219,6 @@ def read_sp500_stocks_daily() -> pl.DataFrame:
 
 if __name__ == "__main__":
     us_indicators_weekly: pl.DataFrame = read_us_indicators_weekly()
-    us_indicators_weekly: pl.DataFrame = drop_null_columns(df=us_indicators_weekly)
     sp500_stocks_daily: pl.DataFrame = read_sp500_stocks_daily()
 
     print("\nUS indicators (weekly):")

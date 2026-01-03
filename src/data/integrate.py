@@ -1,7 +1,6 @@
 import polars as pl
 
 from src.data.read import (
-    drop_null_columns,
     read_sp500_stocks_daily,
     read_us_indicators_weekly,
 )
@@ -335,9 +334,64 @@ def add_indicators_to_sp500_returns_weekly(
     return sp500_returns_with_indicators_weekly
 
 
-if __name__ == "__main__":
+def _forward_fill_features(
+    df: pl.DataFrame,
+    date_col: str = "Date",
+) -> pl.DataFrame:
+    """Forward-fill all feature columns over time, leaving initial nulls as 0.
+
+    The DataFrame is first sorted by date. For every column except the date
+    column:
+      - forward-fill null values
+      - replace remaining nulls (at the start) with 0.0
+
+    Args:
+        df: Input DataFrame.
+        date_col: Name of the date column.
+
+    Returns:
+        A DataFrame with no nulls in non-date columns.
+    """
+    if date_col not in df.columns:
+        raise RuntimeError(f"Expected '{date_col}' column. Got: {df.columns}")
+
+    feature_cols: list[str] = [c for c in df.columns if c != date_col]
+
+    return df.sort(by=date_col).with_columns([
+        pl.col(name=c).fill_null(strategy="forward").fill_null(value=0.0)
+        for c in feature_cols
+    ])
+
+
+def _drop_null_columns(df: pl.DataFrame) -> pl.DataFrame:
+    """Elimina columnas que son completamente nulas o completamente cero.
+
+    Args:
+        df: DataFrame de Polars a limpiar.
+
+    Returns:
+        DataFrame sin columnas sin información real.
+    """
+    valid_columns: list[str] = []
+
+    for col in df.columns:
+        series: pl.Series = df[col]
+
+        if series.null_count() == df.height:
+            continue
+
+        if series.drop_nulls().n_unique() == 1 and series.drop_nulls()[0] == 0.0:
+            continue
+
+        valid_columns.append(col)
+
+    return df.select(valid_columns)
+
+
+def load_integrated_dataset() -> pl.DataFrame:
+
     us_indicators_weekly: pl.DataFrame = read_us_indicators_weekly()
-    us_indicators_weekly: pl.DataFrame = drop_null_columns(df=us_indicators_weekly)
+    us_indicators_weekly: pl.DataFrame = _drop_null_columns(df=us_indicators_weekly)
     sp500_stocks_daily: pl.DataFrame = read_sp500_stocks_daily()
 
     sp500_stocks_weekly: pl.DataFrame = to_sp500_stocks_weekly(
@@ -358,5 +412,16 @@ if __name__ == "__main__":
             us_indicators_weekly=us_indicators_weekly,
         )
     )
+
+    sp500_returns_with_indicators_weekly = _forward_fill_features(
+        df=sp500_returns_with_indicators_weekly,
+        date_col="Date",
+    )
+
+    return sp500_returns_with_indicators_weekly
+
+
+if __name__ == "__main__":
+    sp500_returns_with_indicators_weekly: pl.DataFrame = load_integrated_dataset()
 
     print(sp500_returns_with_indicators_weekly.head(n=10))
