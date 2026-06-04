@@ -1,0 +1,20 @@
+dates:
+  start: "2024-01-01"
+  end: "2026-01-01"
+
+  # start: "2018-01-01"
+  # end: "2024-01-01"
+
+processed_dir: "data/processed"
+evaluation_dir: "evaluation"
+initial_value: 1.0
+trading_days_per_year: 252
+metrics:
+  - "cumulative_return"
+  - "annualized_return"
+  - "annualized_volatility"
+  - "sharpe_ratio"
+  - "sortino_ratio"
+  - "max_drawdown"
+  - "mean_turnover"
+  - "mean_herfindahl"

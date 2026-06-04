@@ -1,0 +1,18 @@
+# Global training configuration
+dates:
+  train: ["2018-01-01", "2024-01-01"]
+  validation: ["2024-01-01", "2025-01-01"]
+
+seed: 42
+device: "auto"
+num_workers: 0
+processed_dir: "data/processed"
+checkpoint_dir: "checkpoints"
+runs_dir: "runs"
+tensorboard: true
+
+eval_after_train: true
+save_checkpoint: true
+
+weights_loss_coef: 1.0
+variance_loss_coef: 0.05

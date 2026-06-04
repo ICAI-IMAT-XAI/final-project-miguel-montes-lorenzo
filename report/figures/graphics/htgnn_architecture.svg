@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="560" viewBox="0 0 1180 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#263238" />
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #263238; stroke-width: 1.4; rx: 10; }
+      .soft { fill: #f4f7fb; stroke: #263238; stroke-width: 1.2; rx: 10; }
+      .node { fill: #f7d8b8; stroke: #263238; stroke-width: 1.2; }
+      .latent { fill: #e4eef9; stroke: #263238; stroke-width: 1.2; }
+      .text { font-family: Arial, sans-serif; font-size: 17px; fill: #111111; }
+      .small { font-family: Arial, sans-serif; font-size: 13px; fill: #222222; }
+      .tiny { font-family: Arial, sans-serif; font-size: 11px; fill: #333333; }
+      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #111111; }
+      .arrow { stroke: #263238; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #607d8b; stroke-width: 1.2; fill: none; stroke-dasharray: 5 5; }
+    </style>
+  </defs>
+
+  <rect x="18" y="18" width="1144" height="524" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+
+  <text x="45" y="55" class="title">Market-block temporal inputs</text>
+  <rect x="35" y="78" width="230" height="360" class="soft"/>
+  <circle cx="67" cy="125" r="12" class="node"/><text x="90" y="130" class="small">portfolio_signal</text>
+  <circle cx="67" cy="170" r="12" class="node"/><text x="90" y="175" class="small">fx_usd_pair</text>
+  <circle cx="67" cy="215" r="12" class="node"/><text x="90" y="220" class="small">fx_future</text>
+  <circle cx="67" cy="260" r="12" class="node"/><text x="90" y="265" class="small">rates / bond ETFs</text>
+  <circle cx="67" cy="305" r="12" class="node"/><text x="90" y="310" class="small">commodities</text>
+  <circle cx="67" cy="350" r="12" class="node"/><text x="90" y="355" class="small">equity-index futures</text>
+  <circle cx="67" cy="395" r="12" class="latent"/><text x="90" y="400" class="small">generic latent nodes</text>
+  
+
+  <path d="M265 260 L330 260" class="arrow"/>
+
+  <text x="334" y="55" class="title">Temporal encoding</text>
+  <rect x="315" y="78" width="230" height="360" class="soft"/>
+  <rect x="345" y="105" width="160" height="42" class="box"/><text x="389" y="132" class="text">GRU_v</text>
+  <rect x="345" y="185" width="160" height="42" class="box"/><text x="389" y="212" class="text">GRU_v</text>
+  <rect x="345" y="265" width="160" height="42" class="box"/><text x="389" y="292" class="text">GRU_v</text>
+  <rect x="345" y="345" width="160" height="42" class="box"/><text x="373" y="372" class="text">MLP latent</text>
+  
+
+  <path d="M545 260 L610 260" class="arrow"/>
+
+  <text x="612" y="55" class="title">Typed message passing</text>
+  <rect x="595" y="78" width="270" height="360" class="soft"/>
+  <circle cx="730" cy="135" r="16" class="node"/>
+  <circle cx="650" cy="220" r="13" class="node"/>
+  <circle cx="810" cy="220" r="13" class="node"/>
+  <circle cx="672" cy="335" r="13" class="node"/>
+  <circle cx="788" cy="335" r="13" class="latent"/>
+  <path d="M650 220 C680 170 700 150 730 135" class="arrow"/>
+  <path d="M810 220 C780 170 760 150 730 135" class="arrow"/>
+  <path d="M672 335 C690 270 710 210 730 135" class="arrow"/>
+  <path d="M788 335 C770 270 750 210 730 135" class="arrow"/>
+  <path d="M730 151 C730 190 700 215 664 220" class="dash"/>
+  <path d="M730 151 C735 230 755 300 788 335" class="dash"/>
+  <rect x="625" y="380" width="210" height="36" class="box"/>
+  <text x="646" y="403" class="small">Relation transforms W_r</text>
+  
+
+  <path d="M865 260 L930 260" class="arrow"/>
+
+  <text x="925" y="55" class="title">Portfolio readout</text>
+  <rect x="915" y="78" width="230" height="360" class="soft"/>
+  <rect x="950" y="112" width="160" height="42" class="box"/><text x="975" y="139" class="text">Portfolio state</text>
+  <path d="M1030 154 L1030 205" class="arrow"/>
+  <rect x="950" y="205" width="160" height="42" class="box"/><text x="985" y="232" class="text">Readout MLP</text>
+  <path d="M1030 247 L990 300" class="arrow"/>
+  <path d="M1030 247 L1070 300" class="arrow"/>
+  <rect x="925" y="300" width="120" height="48" class="box"/><text x="948" y="321" class="small">Dirichlet</text><text x="953" y="339" class="small">alpha head</text>
+  <rect x="1055" y="300" width="70" height="48" class="box"/><text x="1065" y="321" class="small">Var.</text><text x="1064" y="339" class="small">head</text>
+  <path d="M985 348 L985 395" class="arrow"/>
+  <rect x="930" y="390" width="120" height="32" class="box"/><text x="943" y="411" class="small">weights w_hat</text>
+  
+</svg>

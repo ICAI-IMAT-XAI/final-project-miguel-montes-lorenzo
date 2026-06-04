@@ -1,0 +1,29 @@
+name: "BNN"
+section: "probabilistic" # options: "pointwise" | "probabilistic"
+input_mode: "portfolio" # options: "portfolio" | "heterogeneous_graph"
+activation: "gelu" # options: "relu" | "tanh" | "gelu"
+train:
+  lookback: 20
+  hidden_dims: [64, 64, 32]
+  prior_sigma: 1.0
+  dropout: 0.0
+  epochs: 300 # 300
+  lr: 1e-4 # 5.0e-4
+  batch_size: 64
+  variance_loss_coef: 0.0
+  n_mc_samples: 5
+  risk_aversion: 1.0
+  ridge: 1.0e-4
+  allow_short: false
+  input_format: "weights" # options: "weights" | "returns"
+  early_stopping_patience: 15
+  n_samples: 200
+  loss: "wasserstein" # options: "mse" | "cosine" | "kl" | "jsd" | "hellinger" | "wasserstein"
+  loss_regularizations:
+    covariance: null # options: null | <float>
+    bear_entropy: null # options: null | <float>
+    weight: null # options: null | <float>
+eval:
+  lookback: 20
+  risk_aversion: 1.0
+  n_samples: 200

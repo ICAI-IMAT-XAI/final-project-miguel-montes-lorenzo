@@ -1,0 +1,35 @@
+name: "HTGNN"
+section: "pointwise" # options: "pointwise" | "probabilistic"
+input_mode: "heterogeneous_graph" # options: "portfolio" | "heterogeneous_graph"
+activation: "gelu" # options: "relu" | "tanh" | "gelu"
+train:
+  hidden_dim: 96
+  generic_node_count: 3
+  generic_node_feature_dim: 32
+  gru_layers: 1
+  message_passing_layers: 3
+  # Message-update gate. "none" keeps the original residual update;
+  # "vectorial" learns one gate per hidden dimension.
+  gate: "vectorial" # options: "none" | "vectorial"
+  dropout: 0.10
+  epochs: 300 # 100
+  lr: 1e-4 # 1.0e-3
+  batch_size: 64
+  variance_loss_coef: 0.0
+  # Used only to build the mean-variance teacher weights in the loss.
+  # Higher values penalize covariance more and produce more conservative targets.
+  risk_aversion: 1.0
+  ridge: 1.0e-4
+  # Controls the teacher weights, not the HTGNN output head.
+  # false keeps long-only targets on the simplex; true can create short targets.
+  allow_short: false
+  early_stopping_patience: 25 # 15
+  # Which state to save: "best" restores the best validation epoch;
+  # "last" saves the state reached when training stops.
+  checkpoint: "best" # options: "best" | "last"
+  loss: "wasserstein" # options: "mse" | "cosine" | "kl" | "jsd" | "hellinger" | "wasserstein"
+  loss_regularizations:
+    covariance: null # options: null | <float>
+    bear_entropy: null # options: null | <float>
+eval:
+  n_samples: 50

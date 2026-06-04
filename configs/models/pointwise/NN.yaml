@@ -1,0 +1,25 @@
+name: "NN"
+section: "pointwise" # options: "pointwise" | "probabilistic"
+input_mode: "portfolio" # options: "portfolio" | "heterogeneous_graph"
+activation: "gelu" # options: "relu" | "tanh" | "gelu"
+train:
+  lookback: 20
+  hidden_dims: [64, 64, 32]
+  dropout: 0.35
+  weight_decay: 8.771380343280557e-05
+  lr: 1e-4 # 0.001040258761588385
+  epochs: 300
+  batch_size: 64
+  variance_loss_coef: 0.0
+  risk_aversion: 1.0
+  ridge: 1.0e-4
+  allow_short: false
+  input_format: "weights" # options: "weights" | "returns"
+  early_stopping_patience: 50
+  loss: "wasserstein" # options: "mse" | "cosine" | "kl" | "jsd" | "hellinger" | "wasserstein"
+  loss_regularizations:
+    covariance: null # options: null | <float>
+    bear_entropy: null # options: null | <float>
+eval:
+  lookback: 20
+  risk_aversion: 1.0

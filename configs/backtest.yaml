@@ -1,0 +1,34 @@
+# Backtest configuration
+
+dates:
+  start: "2024-01-01"
+  end: "2026-01-01"
+
+processed_dir: "data/processed"
+backtest_dir: "backtests"
+initial_value: 1.0
+trading_days_per_year: 252
+
+# Strategy or list of strategies to evaluate.
+# Pointwise strategies: full_rebalancing, partial_rebalancing
+# Probabilistic strategies: black_litterman
+strategies:
+  full_rebalancing: true
+  partial_rebalancing: false
+  black_litterman: false
+
+# Benchmarks: model-independent reference series included alongside strategies.
+benchmarks:
+  USD: true
+  best_currency: true
+  SP500: false
+
+metrics:
+  cumulative_return: true
+  annualized_return: true
+  annualized_volatility: true
+  sharpe_ratio: true
+  sortino_ratio: true
+  max_drawdown: true
+  mean_turnover: true
+  mean_herfindahl: true

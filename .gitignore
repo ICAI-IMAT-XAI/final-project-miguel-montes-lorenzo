@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.env
+
+# Project outputs
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/nodes/
+data/processed/nodes/*
+!data/processed/nodes/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+evaluation/*
+!evaluation/.gitkeep
+backtests/*
+!backtests/.gitkeep
+runs/*
+!runs/.gitkeep
+visualizations/*
+!visualizations/.gitkeep
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# AI
+.codex

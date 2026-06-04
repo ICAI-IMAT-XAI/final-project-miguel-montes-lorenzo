@@ -1,0 +1,3 @@
+name: "black_litterman"
+tau: 0.05
+risk_aversion: 1.0 # 1.0

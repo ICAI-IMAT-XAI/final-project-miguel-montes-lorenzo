@@ -1,0 +1,16 @@
+raw_prices_path: "data/raw/prices.parquet"
+raw_metadata_path: "data/raw/symbol_metadata.parquet"
+processed_dir: "data/processed"
+lookback: 20
+min_observations_per_node: 120
+max_missing_ratio: 0.25
+split_date_ranges:
+  train:
+    start: "2018-01-01"
+    end: "2024-01-01"
+  val:
+    start: "2024-01-01"
+    end: "2025-01-01"
+  test:
+    start: "2025-01-01"
+    end: "2026-01-01"

@@ -1,0 +1,98 @@
+[project]
+name = "htgnn-forex-trading"
+version = "0.1.0"
+description = "Application of heterogeneous temporal graph neural networks to FOREX portfolio allocation."
+requires-python = ">=3.12"
+dependencies = [
+    "absl-py",
+    "beautifulsoup4",
+    "certifi",
+    "cffi",
+    "charset-normalizer",
+    "contourpy",
+    "curl-cffi",
+    "cycler",
+    "filelock",
+    "fonttools",
+    "frozendict",
+    "fsspec",
+    "grpcio",
+    "idna",
+    "jinja2",
+    "joblib",
+    "kiwisolver",
+    "markdown",
+    "markdown-it-py",
+    "markupsafe",
+    "matplotlib",
+    "mdurl",
+    "mpmath",
+    "multitasking",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pandas",
+    "peewee",
+    "pillow",
+    "platformdirs",
+    "protobuf",
+    "pyarrow",
+    "pycparser",
+    "pygments",
+    "pyparsing",
+    "python-dateutil",
+    "pytz",
+    "pyyaml",
+    "requests",
+    "rich",
+    "scikit-learn",
+    "scipy",
+    "setuptools",
+    "six",
+    "soupsieve",
+    "sympy",
+    "tensorboard",
+    "tensorboard-data-server",
+    "threadpoolctl",
+    "torch",
+    "tqdm",
+    "triton",
+    "typing-extensions",
+    "urllib3",
+    "websockets",
+    "werkzeug",
+    "yfinance",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+cuda = [
+    "cuda-bindings",
+    "cuda-pathfinder",
+    "nvidia-cublas-cu12",
+    "nvidia-cuda-cupti-cu12",
+    "nvidia-cuda-nvrtc-cu12",
+    "nvidia-cuda-runtime-cu12",
+    "nvidia-cudnn-cu12",
+    "nvidia-cufft-cu12",
+    "nvidia-cufile-cu12",
+    "nvidia-curand-cu12",
+    "nvidia-cusolver-cu12",
+    "nvidia-cusparse-cu12",
+    "nvidia-cusparselt-cu12",
+    "nvidia-nccl-cu12",
+    "nvidia-nvjitlink-cu12",
+    "nvidia-nvshmem-cu12",
+    "nvidia-nvtx-cu12",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = []
