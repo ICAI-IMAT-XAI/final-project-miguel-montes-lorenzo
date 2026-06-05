@@ -1,7 +1,7 @@
 {
   "background_samples": 32,
   "batch_size": 64,
-  "checkpoint": "checkpoints/HTGNN-20260605_043116.pt",
+  "checkpoint": "checkpoints/HTGNN-20260605_125130.pt",
   "device": "cpu",
   "ig_steps": 24,
   "max_samples": 260,

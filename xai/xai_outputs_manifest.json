@@ -1,5 +1,5 @@
 {
-  "artifact_count": 31,
+  "artifact_count": 34,
   "artifacts": [
     {
       "kind": "config",
@@ -85,6 +85,21 @@
       "kind": "figure",
       "method": "integrated_gradients",
       "path": "xai/local_explanations/integrated_gradients_graph.svg"
+    },
+    {
+      "kind": "table",
+      "method": "integrated_gradients_last_message",
+      "path": "xai/local_explanations/integrated_gradients_last_message_local_values.csv"
+    },
+    {
+      "kind": "table",
+      "method": "integrated_gradients_last_message",
+      "path": "xai/local_explanations/integrated_gradients_last_message_node_summary.csv"
+    },
+    {
+      "kind": "figure",
+      "method": "integrated_gradients_last_message",
+      "path": "xai/local_explanations/integrated_gradients_last_message_graph.svg"
     },
     {
       "kind": "table",

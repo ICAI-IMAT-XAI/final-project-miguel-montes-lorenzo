@@ -1,28 +1,26 @@
-# HTGNN FOREX XAI Case Study
+# HTGNN Forex XAI Case Study
 
-This repository contains an end-to-end Explainable AI case study for FOREX
-portfolio allocation with heterogeneous temporal graph neural networks.
-
-The task is to predict daily currency portfolio allocations from historical
-market windows. The main explained model is an HTGNN/BHTGNN-style portfolio
-model trained on heterogeneous temporal nodes such as FX futures, bond ETFs,
-commodities, equity futures, and portfolio-signal history.
+This repository contains an end-to-end Explainable AI case study for daily
+foreign-exchange portfolio allocation with a heterogeneous temporal graph neural
+network.
 
 ## Repository Structure
 
 ```text
-configs/                  Experiment, data, model, evaluation, and backtest configs
-src/data/                 Data download, transformation, and PyTorch dataset code
-src/models/               NN, HTGNN, BNN, and BHTGNN model implementations
-src/strategies/           Portfolio rebalancing strategies used by backtests
-src/metrics/              Backtest and portfolio metrics
-src/xai/                  XAI method implementations
+configs/                  Data, model, training, backtest, and evaluation configs
+src/data/                 Data download, preprocessing, and dataset construction
+src/models/               Neural portfolio models, including HTGNN variants
+src/strategies/           Portfolio rebalancing strategies used in backtests
+src/metrics/              Portfolio and backtest metrics
+src/xai/                  Explainability method implementations
 xai/xai.py                Main XAI pipeline entry point
-xai/xai.ipynb             Reproducible notebook for training, backtest, and XAI
+xai/xai.ipynb             Notebook with training, backtest, and XAI workflow
+report/main.typ           Written report source
+report/main.pdf           Compiled written report
 requirements.txt          Python dependencies
 ```
 
-Generated artifacts are written to ignored output directories:
+Generated outputs are intentionally ignored by Git:
 
 ```text
 data/
@@ -36,9 +34,9 @@ xai/local_explanations/
 xai/evaluation/
 ```
 
-## Environment
+## Requirements
 
-Create and activate a Python environment:
+Create and activate a Python environment, then install the dependencies:
 
 ```bash
 python -m venv .venv
@@ -46,23 +44,20 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Alternatively, with `uv`:
+The report is written in Typst. To rebuild the PDF, install Typst and run the
+compile command shown below.
 
-```bash
-uv venv
-source .venv/bin/activate
-uv pip install -r requirements.txt
-```
+## Main Experiments
 
-## Run the Main Experiments
+Run the following commands from the repository root.
 
-Download raw market data:
+Download the raw Yahoo Finance market data:
 
 ```bash
 python -m src.data.download --config configs/download.yaml
 ```
 
-Transform raw prices into supervised tensors:
+Transform prices into supervised tensors and heterogeneous node windows:
 
 ```bash
 python -m src.data.transform --config configs/transform.yaml
@@ -90,7 +85,7 @@ python -m xai.xai \
   --target variance \
   --output-dir xai \
   --device cpu \
-  --max-samples 128 \
+  --max-samples 260 \
   --background-samples 32 \
   --n-local 3 \
   --top-k 5 \
@@ -98,14 +93,20 @@ python -m xai.xai \
   --methods all
 ```
 
+Rebuild the written report:
+
+```bash
+typst compile report/main.typ report/main.pdf
+```
+
 ## Notebook
 
-The notebook [xai/xai.ipynb](xai/xai.ipynb) shows the complete workflow:
+The notebook [xai/xai.ipynb](xai/xai.ipynb) contains the reproducible workflow
+required for the project: data loading and preprocessing, model training,
+backtest evaluation, XAI computation, visualisation of the report figures, and
+short comments on the main results.
 
-1. data preparation commands,
-2. model training,
-3. backtest execution,
-4. backtest plot inspection,
-5. XAI pipeline execution,
-6. XAI plot inspection with short comments.
+## External Resources
 
+External code, libraries, datasets, and XAI methods used in the project are
+cited in [report/references.bib](report/references.bib).

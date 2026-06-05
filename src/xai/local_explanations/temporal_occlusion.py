@@ -203,6 +203,7 @@ def run_temporal_occlusion(
         output_path=figure_path,
         title="Temporal occlusion window effect",
         ylabel="Mean performance ratio drop",
+        width=6.0,
     )
     _save_node_window_histograms(
         summary=node_summary,

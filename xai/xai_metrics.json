@@ -1,16 +1,16 @@
 {
   "deletion_insertion": {
-    "auc_gap_insertion_minus_deletion": -0.7818112373352051,
+    "auc_gap_insertion_minus_deletion": 1.107351303100586,
     "curve_points": 6,
-    "deletion_auc": 7.560638129711151,
+    "deletion_auc": 6.666760861873627,
     "deletion_order": [
-      "fx_usd_pair",
       "equity_index_future",
-      "portfolio_signal",
       "fx_future",
-      "jpy_bond_etf"
+      "fx_usd_pair",
+      "eur_bond_etf",
+      "portfolio_signal"
     ],
-    "deletion_vs_full_model_auc": 4.4018232072957435,
+    "deletion_vs_full_model_auc": 3.798728018599657,
     "evaluated_steps": [
       0,
       1,
@@ -19,27 +19,27 @@
       4,
       5
     ],
-    "insertion_auc": 6.778826892375946,
+    "insertion_auc": 7.774112164974213,
     "insertion_order": [
-      "fx_usd_pair",
       "equity_index_future",
-      "portfolio_signal",
       "fx_future",
-      "jpy_bond_etf"
+      "fx_usd_pair",
+      "eur_bond_etf",
+      "portfolio_signal"
     ],
-    "insertion_vs_full_model_auc": 3.946650669054163,
-    "original_model_annualized_return": 0.7176151275634766,
-    "original_performance_ratio": 1.7176151275634766,
+    "insertion_vs_full_model_auc": 4.429698066674673,
+    "original_model_annualized_return": 0.7549982070922852,
+    "original_performance_ratio": 1.7549982070922852,
     "standard_annualized_return": 0.0,
     "top_k": 5,
-    "vs_full_model_auc_gap_insertion_minus_deletion": -0.4551725382415803
+    "vs_full_model_auc_gap_insertion_minus_deletion": 0.630970048075016
   },
   "grouped_shap": {
     "portfolio_signal_shap_mean": {
       "constant_input_currencies": [],
       "lookback": 20,
-      "mean_surrogate_mse": 0.04932522132003214,
-      "mean_surrogate_r2": 0.04963313788175583,
+      "mean_surrogate_mse": 0.05347636787337251,
+      "mean_surrogate_r2": 0.055448226630687714,
       "n_input_currencies": 8,
       "n_output_currencies": 8,
       "n_samples": 260,
@@ -49,8 +49,8 @@
     "portfolio_signal_shap_variance": {
       "constant_input_currencies": [],
       "lookback": 20,
-      "mean_surrogate_mse": 0.00011123962707415558,
-      "mean_surrogate_r2": 0.08674366027116776,
+      "mean_surrogate_mse": 0.00010751777955420039,
+      "mean_surrogate_r2": 0.0708034411072731,
       "n_input_currencies": 8,
       "n_output_currencies": 8,
       "n_samples": 260,

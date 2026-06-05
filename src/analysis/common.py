@@ -1124,12 +1124,12 @@ def plot_node_input_attention_pies(
     if not target_nodes:
         return
 
-    num_cols = min(2, len(target_nodes))
+    num_cols = min(4, len(target_nodes))
     num_rows = int(math.ceil(len(target_nodes) / num_cols))
     fig, axes = plt.subplots(
         nrows=num_rows,
         ncols=num_cols,
-        figsize=(5.1 * num_cols, 4.2 * num_rows),
+        figsize=(3.9 * num_cols, 4.05 * num_rows),
         squeeze=False,
     )
     color_map = plt.get_cmap("tab20")

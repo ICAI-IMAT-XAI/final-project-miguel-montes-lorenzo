@@ -20,6 +20,7 @@ def save_bar_plot(
     title: str,
     ylabel: str,
     top_n: int | None = None,
+    width: float = 10.0,
 ) -> Path:
     """Save a horizontal bar chart sorted by absolute value."""
     output = Path(output_path)
@@ -33,7 +34,7 @@ def save_bar_plot(
     scores = np.array([item[1] for item in items], dtype=float)[::-1]
     colors = ["#dc2626" if score >= 0 else "#2563eb" for score in scores]
     height = max(4.0, 0.36 * len(labels) + 1.8)
-    fig, ax = plt.subplots(figsize=(10, height))
+    fig, ax = plt.subplots(figsize=(float(width), height))
     ax.barh(np.arange(len(labels)), scores, color=colors, alpha=0.88)
     ax.axvline(0.0, color="#0f172a", linewidth=0.8)
     ax.set_yticks(np.arange(len(labels)), labels)
