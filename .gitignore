@@ -27,6 +27,12 @@ runs/*
 !runs/.gitkeep
 visualizations/*
 !visualizations/.gitkeep
+xai/global_explanations/*
+!xai/global_explanations/.gitkeep
+xai/local_explanations/*
+!xai/local_explanations/.gitkeep
+xai/evaluation/*
+!xai/evaluation/.gitkeep
 
 # OS / IDE
 .DS_Store

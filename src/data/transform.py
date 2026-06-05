@@ -345,6 +345,16 @@ def build_currency_returns(log_returns: pd.DataFrame) -> pd.DataFrame:
     return currency_returns.loc[:, list(TARGET_CURRENCIES)].dropna(how="any")
 
 
+def center_currency_returns(currency_returns: pd.DataFrame) -> pd.DataFrame:
+    """Center each date's currency returns around the cross-currency mean.
+
+    This makes USD informative in relative-return inputs: although its raw USD
+    return is always zero, after centering it represents the negative average
+    return of the full currency basket on that date.
+    """
+    return currency_returns.sub(currency_returns.mean(axis=1), axis=0)
+
+
 def filter_node_returns(
     log_returns: pd.DataFrame,
     symbol_blocks: dict[str, list[str]],
@@ -744,6 +754,9 @@ def transform_data(config: dict[str, Any], show_summaries: bool = False) -> dict
     )
     log_returns: pd.DataFrame = compute_log_returns(prices=prices)
     currency_returns: pd.DataFrame = build_currency_returns(log_returns=log_returns)
+    center_returns = bool(config.get("center", False))
+    if center_returns:
+        currency_returns = center_currency_returns(currency_returns=currency_returns)
     node_returns, node_filter_rows = filter_node_returns(
         log_returns=log_returns,
         symbol_blocks=symbol_blocks,
@@ -755,6 +768,7 @@ def transform_data(config: dict[str, Any], show_summaries: bool = False) -> dict
         node_returns=node_returns,
         lookback=int(config.get("lookback", 20)),
     )
+    metadata["centered_currency_returns"] = center_returns
     metadata = resolve_dataset_splits(
         arrays=arrays,
         metadata=metadata,

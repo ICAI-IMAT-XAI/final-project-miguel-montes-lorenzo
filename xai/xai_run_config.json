@@ -1,0 +1,25 @@
+{
+  "background_samples": 32,
+  "batch_size": 64,
+  "checkpoint": "checkpoints/HTGNN-20260605_043116.pt",
+  "device": "cpu",
+  "ig_steps": 24,
+  "max_samples": 260,
+  "methods": [
+    "deletion_insertion",
+    "grouped_shap",
+    "integrated_gradients",
+    "subgraph_occlusion",
+    "temporal_occlusion"
+  ],
+  "model": "HTGNN",
+  "n_local": 3,
+  "output_dir": "xai",
+  "processed_dir": "data/processed",
+  "resolved_target": "variance",
+  "seed": 42,
+  "split": "test",
+  "target": "variance",
+  "temporal_windows": 5,
+  "top_k": 5
+}

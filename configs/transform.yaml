@@ -2,6 +2,7 @@ raw_prices_path: "data/raw/prices.parquet"
 raw_metadata_path: "data/raw/symbol_metadata.parquet"
 processed_dir: "data/processed"
 lookback: 20
+center: true
 min_observations_per_node: 120
 max_missing_ratio: 0.25
 split_date_ranges:

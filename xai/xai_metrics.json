@@ -1,0 +1,61 @@
+{
+  "deletion_insertion": {
+    "auc_gap_insertion_minus_deletion": -0.7818112373352051,
+    "curve_points": 6,
+    "deletion_auc": 7.560638129711151,
+    "deletion_order": [
+      "fx_usd_pair",
+      "equity_index_future",
+      "portfolio_signal",
+      "fx_future",
+      "jpy_bond_etf"
+    ],
+    "deletion_vs_full_model_auc": 4.4018232072957435,
+    "evaluated_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "insertion_auc": 6.778826892375946,
+    "insertion_order": [
+      "fx_usd_pair",
+      "equity_index_future",
+      "portfolio_signal",
+      "fx_future",
+      "jpy_bond_etf"
+    ],
+    "insertion_vs_full_model_auc": 3.946650669054163,
+    "original_model_annualized_return": 0.7176151275634766,
+    "original_performance_ratio": 1.7176151275634766,
+    "standard_annualized_return": 0.0,
+    "top_k": 5,
+    "vs_full_model_auc_gap_insertion_minus_deletion": -0.4551725382415803
+  },
+  "grouped_shap": {
+    "portfolio_signal_shap_mean": {
+      "constant_input_currencies": [],
+      "lookback": 20,
+      "mean_surrogate_mse": 0.04932522132003214,
+      "mean_surrogate_r2": 0.04963313788175583,
+      "n_input_currencies": 8,
+      "n_output_currencies": 8,
+      "n_samples": 260,
+      "n_surrogate_features": 160,
+      "target": "mean"
+    },
+    "portfolio_signal_shap_variance": {
+      "constant_input_currencies": [],
+      "lookback": 20,
+      "mean_surrogate_mse": 0.00011123962707415558,
+      "mean_surrogate_r2": 0.08674366027116776,
+      "n_input_currencies": 8,
+      "n_output_currencies": 8,
+      "n_samples": 260,
+      "n_surrogate_features": 160,
+      "target": "variance"
+    }
+  }
+}

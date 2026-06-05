@@ -1,0 +1,160 @@
+{
+  "artifact_count": 31,
+  "artifacts": [
+    {
+      "kind": "config",
+      "method": "pipeline",
+      "path": "xai/xai_run_config.json"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean_summary.csv"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean_samples.csv"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean_surrogate_metrics.csv"
+    },
+    {
+      "kind": "metrics",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean_metrics.json"
+    },
+    {
+      "kind": "figure",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean.svg"
+    },
+    {
+      "kind": "figure",
+      "method": "portfolio_signal_shap_mean",
+      "path": "xai/global_explanations/portfolio_signal_shap_mean_signed.svg"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance_summary.csv"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance_samples.csv"
+    },
+    {
+      "kind": "table",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance_surrogate_metrics.csv"
+    },
+    {
+      "kind": "metrics",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance_metrics.json"
+    },
+    {
+      "kind": "figure",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance.svg"
+    },
+    {
+      "kind": "figure",
+      "method": "portfolio_signal_shap_variance",
+      "path": "xai/global_explanations/portfolio_signal_shap_variance_signed.svg"
+    },
+    {
+      "kind": "table",
+      "method": "integrated_gradients",
+      "path": "xai/local_explanations/integrated_gradients_local_values.csv"
+    },
+    {
+      "kind": "table",
+      "method": "integrated_gradients",
+      "path": "xai/local_explanations/integrated_gradients_node_summary.csv"
+    },
+    {
+      "kind": "figure",
+      "method": "integrated_gradients",
+      "path": "xai/local_explanations/integrated_gradients_node_importance.svg"
+    },
+    {
+      "kind": "figure",
+      "method": "integrated_gradients",
+      "path": "xai/local_explanations/integrated_gradients_graph.svg"
+    },
+    {
+      "kind": "table",
+      "method": "temporal_occlusion",
+      "path": "xai/local_explanations/temporal_occlusion_local_values.csv"
+    },
+    {
+      "kind": "table",
+      "method": "temporal_occlusion",
+      "path": "xai/local_explanations/temporal_occlusion_window_summary.csv"
+    },
+    {
+      "kind": "figure",
+      "method": "temporal_occlusion",
+      "path": "xai/local_explanations/temporal_occlusion_windows.svg"
+    },
+    {
+      "kind": "table",
+      "method": "node_temporal_occlusion",
+      "path": "xai/local_explanations/node_temporal_occlusion_local_values.csv"
+    },
+    {
+      "kind": "table",
+      "method": "node_temporal_occlusion",
+      "path": "xai/local_explanations/node_temporal_occlusion_window_summary.csv"
+    },
+    {
+      "kind": "figure",
+      "method": "node_temporal_occlusion",
+      "path": "xai/local_explanations/node_temporal_occlusion_windows.svg"
+    },
+    {
+      "kind": "figure",
+      "method": "input_attention_pie_charts",
+      "path": "xai/local_explanations/input_attention_pie_charts.svg"
+    },
+    {
+      "kind": "table",
+      "method": "deletion_insertion",
+      "path": "xai/evaluation/deletion_insertion_curve.csv"
+    },
+    {
+      "kind": "table",
+      "method": "deletion_insertion_vs_full_model",
+      "path": "xai/evaluation/deletion_insertion_vs_full_model_curve.csv"
+    },
+    {
+      "kind": "table",
+      "method": "deletion_insertion",
+      "path": "xai/evaluation/deletion_insertion_batch_details.csv"
+    },
+    {
+      "kind": "metrics",
+      "method": "deletion_insertion",
+      "path": "xai/evaluation/deletion_insertion_metrics.json"
+    },
+    {
+      "kind": "figure",
+      "method": "deletion_insertion",
+      "path": "xai/evaluation/deletion_insertion_curve.svg"
+    },
+    {
+      "kind": "figure",
+      "method": "deletion_insertion_vs_full_model",
+      "path": "xai/evaluation/deletion_insertion_vs_full_model_curve.svg"
+    },
+    {
+      "kind": "metrics",
+      "method": "pipeline",
+      "path": "xai/xai_metrics.json"
+    }
+  ]
+}
